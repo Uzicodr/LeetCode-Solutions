@@ -20,21 +20,20 @@ public:
 
 class Solution {
 public:
+                                                                   //no extra space
     int maxDepth(Node* root) {
         if(root==NULL){
             return 0;
         }
 
-        vector<int> sizes(root->children.size());
-        
-        if (sizes.empty()) {
-            return 1;
-        }
+        //vector<int> sizes(root->children.size());
+
+        int maxh=0;
         for(int i=0;i<root->children.size();i++){
-            sizes[i]=maxDepth(root->children[i]);
+            maxh=max(maxh,maxDepth(root->children[i]));
         }
 
-        sort(sizes.begin(),sizes.end());
-        return 1+sizes[sizes.size()-1];
+        //sort(sizes.begin(),sizes.end());
+        return 1+maxh;
     }
 };
